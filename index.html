@@ -8,7 +8,8 @@
     <!-- Fuentes Central Pet -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <!--  BOOTSTRAP  -->
@@ -16,14 +17,14 @@
     
     <link rel="stylesheet" href="style2.css">
 </head>
-<body>
+<body class="home-editorial-page">
 
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary-custom fixed-top">
         <div class="container site-container">
             <!-- Logo -->
             <a class="navbar-brand b-movil" href="index.html">
-                <img src="img/image.png" alt="Central Pet Logo" class="header-logo">
+                <img src="img/ass.png" alt="Central Pet Logo" class="header-logo">
             </a>
               <!-- Menú Colapsable  -->
             <div class="collapse navbar-collapse" id="centralPetNavbar">
@@ -74,153 +75,162 @@
     </nav>
 </header>
 
-    <main>
-        <!-- HERO SWIPER-->
-        <section class="hero-section">
-            <div class="swiper hero-swiper">
-                <div class="swiper-wrapper">
-                    <!-- Slide 1 -->
-                    <div class="swiper-slide" style="background-image: linear-gradient(rgba(26, 26, 26, 0.18), rgba(26, 26, 26, 0.18)), url('img/central-pet/hero-cuidado.jpg'), url('img/placeholder.png');">
-                        <div class="hero-content container site-container">
-                            <h1>Todo para cuidar a tu mascota en un solo lugar</h1>
-                            <p>Productos, orientación y atención cercana para perros y gatos en Huánuco.</p>
-                            <div class="hero-actions">
-                                <a href="menu.html" class="cta-button">Ver productos</a>
-                                <a href="https://wa.me/51902674750" target="_blank" class="cta-button cta-button--secondary">Escribir por WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="swiper-slide" style="background-image: linear-gradient(rgba(26, 26, 26, 0.18), rgba(26, 26, 26, 0.18)), url('img/central-pet/hero-veterinaria.jpg'), url('img/placeholder.png');">
-                        <div class="hero-content container site-container">
-                            <h1>Consulta, vacunas y bienestar con atención cercana</h1>
-                            <p>Acompañamos el cuidado diario de tu mascota con trato amable y soluciones prácticas.</p>
-                            <div class="hero-actions">
-                                <a href="https://wa.me/51902674750" target="_blank" class="cta-button">Escribir por WhatsApp</a>
-                                <a href="locales.html" class="cta-button cta-button--secondary">Cómo llegar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="swiper-slide" style="background-image: linear-gradient(rgba(26, 26, 26, 0.18), rgba(26, 26, 26, 0.18)), url('img/central-pet/hero-productos.jpg'), url('img/placeholder.png');">
-                        <div class="hero-content container site-container">
-                            <h1>Alimentos, accesorios y engreimientos para perros y gatos</h1>
-                            <p>Encuentra básicos de salud, higiene, nutrición y juego para su rutina.</p>
-                            <div class="hero-actions">
-                                <a href="menu.html" class="cta-button">Ver productos</a>
-                                <a href="promociones.html" class="cta-button cta-button--secondary">Ver promociones</a>
-                            </div>
-                        </div>
+    <main class="editorial-home">
+        <section class="editorial-hero">
+            <div class="editorial-glow editorial-glow--right"></div>
+            <div class="container site-container editorial-shell editorial-hero__grid">
+                <div class="editorial-hero__copy">
+                    <span class="editorial-kicker">Central Pet Huánuco</span>
+                    <h1>VITALIDAD <span>CURADA</span><br>PARA ELLOS.</h1>
+                    <p>Nuestra selección de nutrición, bienestar y atención veterinaria convierte el cuidado diario de tu mascota en una experiencia cercana, moderna y confiable.</p>
+                    <div class="editorial-actions">
+                        <a href="menu.html" class="editorial-btn editorial-btn--primary">Ver productos</a>
+                        <a href="https://wa.me/51902674750" target="_blank" class="editorial-btn editorial-btn--soft">Escribir por WhatsApp</a>
                     </div>
                 </div>
-                <!-- PARA LA PAGINACION -->
-                <div class="swiper-pagination"></div>
-                <!-- PARA LA NAVEGACION -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-            </div>
-        </section>
-
-        <!-- Sección de Productos Recomendados-->
-        <section class="product-carousel-section py-4" id="recomendados-section">
-            <div class="container site-container px-3">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <h2 class="section-title">Recomendados</h2>
-                    <a href="menu.html" class="view-all">Ver todo</a>
-                </div>
-                
-                <!-- Botones de navegación FUERA del wrapper con overflow hidden -->
-                <div class="carousel-nav-container position-relative">
-                    <button class="carousel-btn prev d-none d-lg-flex" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next d-none d-lg-flex" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
-                    
-                    <div class="product-carousel-wrapper">
-                        <div class="swiper product-swiper">
-                            <div class="swiper-wrapper" id="home-recommended-track"></div>
-                        </div>
+                <div class="editorial-hero__media" aria-label="Mascotas felices en Central Pet">
+                    <div class="editorial-hero__photo editorial-hero__photo--main">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEPPxjL-dXDceVrMvlryObHce1RL784R4Z51FSVaCOy12I2W4ethtA0Af2j3JrLOb3EehIzVT9_ItGJeWoeY1C2t247F4uKzfWa_2qEYLs27uItpj4pDEtQfkE239sA6Mg-99piVsRz3at8p8Rx98DjeTsHTwuS79FptpmFC5zqebhgLLpZ7eF-koTv3PsQ3Go7aCFXzMxwqCv4fHVLeQxY5-zGJyb4zlqmz3SSYnW74Z6PbGbOsppyIsE0WkDGQTBJhUcudLPzx5E" alt="Perro golden retriever feliz en un ambiente cálido">
                     </div>
-                    
-                    <!-- Controles móviles -->
-                    <div class="swiper-mobile-controls d-lg-none">
-                        <div class="swiper-pagination"></div>
-                        <div class="swiper-navigation-buttons">
-                            <button class="carousel-btn-mobile prev" aria-label="Anterior"><i class="fas fa-arrow-left"></i></button>
-                            <button class="carousel-btn-mobile next" aria-label="Siguiente"><i class="fas fa-arrow-right"></i></button>
-                        </div>
+                    <div class="editorial-hero__photo editorial-hero__photo--mini">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEWoKtanKEZnOIEaHmCTz6iBBRCh-WUfMSTolfzy-MmghR5y8iaO3Q8H9-146k2Ay49wZ1H9FSC9Rur9vzQ5hcU1UhYpbXZ7e0Q9AaAaCszpHjCTi19hw5D_8TcVCwCL_1fIquoDh8BF9poUeRftjYYkrYU1L0zxK8nToPR-HDWKtBjPZ0F3ttU68M0ebpyNKlHmghW1he7vEQ5wvJk2pl6OIL6DGZrGXGyqrJAD8_phQ12sUCcw0FLnt8wrzC9Gpd1LLOmYYsXy92" alt="Beagle juguetón con expresión feliz">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección de Promociones -->
-        <section class="product-carousel-section py-4" id="promociones-section">
-            <div class="container site-container px-3">
-                <div class="d-flex align-items-center justify-content-between mb-2">
+        <section class="editorial-promos">
+            <div class="container site-container editorial-shell">
+                <div class="editorial-promo-grid">
+                    <a href="promociones.html" class="editorial-promo-card editorial-promo-card--image">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuByjpkiTEhNFNgx7AjUnzFeYauYBaKUP2auYv3lw5mvAtD1I71_dLceg_Tv51NMfgAtWCX6bHc-HGhUrzhPr8Y44I2FmI2UIFVfFniaUHUwFfZQ0KOyt0DlpcIW-2FXRXbWcsErJzJTxkAumR08NDNGGRB_5EdpYbokoKnrw2oOYOuzZgB0t0xnBOX8qlEEsoT8hbaJz7TPbD_Mela91YVvhHab0BUI3F_qy4S4M8geyPtCDA5IsXpGmWEdWmhlEmRijSntu95SbxAA" alt="Gato descansando en un espacio moderno">
+                        <div class="editorial-promo-card__content">
+                            <span>Flash sale</span>
+                            <h2>Nutrición<br>premium -30%</h2>
+                            <p>Solo este fin de semana en marcas seleccionadas.</p>
+                        </div>
+                    </a>
+                    <a href="menu.html#accesorios" class="editorial-promo-card editorial-promo-card--solid">
+                        <div class="editorial-pattern" aria-hidden="true"></div>
+                        <div class="editorial-promo-card__content">
+                            <span>Vida activa</span>
+                            <h2>Accesorios para su rutina diaria</h2>
+                            <p>Comodidad, juego y movimiento para perros y gatos con energía.</p>
+                            <strong>Explorar guía</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="editorial-products" id="recomendados-section">
+            <div class="container site-container editorial-shell">
+                <div class="editorial-section-heading">
                     <div>
-                        <h2 class="section-title mb-1">Promociones</h2>
-                        <p class="home-promotions-intro" id="home-promotions-intro">Cargando promociones destacadas...</p>
+                        <span class="editorial-kicker">Selección Central Pet</span>
+                        <h2>RECOMENDADOS</h2>
+                        <p>Productos elegidos para cubrir bienestar, nutrición, descanso y juego sin complicarte el día.</p>
                     </div>
-                    <a href="promociones.html" class="view-all">Ver calendario</a>
+                    <a href="menu.html" class="editorial-link">Ver todo el catálogo <span class="material-symbols-outlined">arrow_forward</span></a>
                 </div>
-                
-                <!-- Botones de navegación FUERA del wrapper con overflow hidden -->
-                <div class="carousel-nav-container position-relative">
-                    <button class="carousel-btn prev d-none d-lg-flex" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next d-none d-lg-flex" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
-                    
-                    <div class="product-carousel-wrapper">
-                        <div class="swiper product-swiper">
-                            <div class="swiper-wrapper" id="home-promotions-track"></div>
+                <div class="editorial-product-grid">
+                    <article class="product-card editorial-product-card">
+                        <div class="card-image-container">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpbSJAJaIezyXRDVZhs8gE24-chOPRiBm_es-EEzN1kQBUWerk0OSMjAOcH2kPyCVXqO_TtBoUiqHbYBy3Sc-tpx0HTHLJhQPR6QE0imyzMJckpVuUi2gDmIqptsMI8BZeAxE2SYpFH2D7jsGgdAh65BHkLeaNfQ3ZB9-G0Tvtuw5LT5oEq-QcE3F0Hiwa2XT1MOO8aMYoVA-I_GEeoVAwN-0eGg9OJJzFGH1nMRJDQ_nlN3cEaIfiwJmlW3aos0jX3OW9nOMatvg_" alt="Arnés rojo para perro">
                         </div>
-                    </div>
-                    
-                    <!-- Controles móviles -->
-                    <div class="swiper-mobile-controls d-lg-none">
-                        <div class="swiper-pagination"></div>
-                        <div class="swiper-navigation-buttons">
-                            <button class="carousel-btn-mobile prev" aria-label="Anterior"><i class="fas fa-arrow-left"></i></button>
-                            <button class="carousel-btn-mobile next" aria-label="Siguiente"><i class="fas fa-arrow-right"></i></button>
+                        <span class="editorial-product-card__tag">Aventura</span>
+                        <h3>Arnés Kinetic Red</h3>
+                        <p class="editorial-product-card__description">Arnés cómodo y resistente para paseos diarios con mejor control.</p>
+                        <div class="editorial-product-card__footer">
+                            <span class="current-price">S/ 45.00</span>
+                            <button class="add-to-cart-btn" data-button-variant="icon" aria-label="Agregar Arnés Kinetic Red"><i class="fas fa-plus"></i></button>
                         </div>
-                    </div>
+                    </article>
+                    <article class="product-card editorial-product-card">
+                        <div class="card-image-container">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTpA6cs8w7ojq6mq8A-iJHS3-yvr_T6fwvllf63WcqkLoSLco04zypR4PuY9VDbNZ915QtGa4vXfbGucH-udXKQKMSLsAB6FxkR4U7n0s0HIU7KQybOkKy971iCsgwgxAmJ5zNzhBk1dTGdf8A16x7ZlivBMXDXAiET8Hme9YbmKKEPWJxQ9DjsjT7GSg0yH4SMUWrQPg0xsSTFokHcGwN4qopPP1TWRZ1l1_KCxj8GDqycqO9TX4B1XlFewBscJJeemN-OR3YR-Yk" alt="Alimento premium para perro">
+                        </div>
+                        <span class="editorial-product-card__tag editorial-product-card__tag--green">Nutrición</span>
+                        <h3>Grain Free Salmon</h3>
+                        <p class="editorial-product-card__description">Alimento premium con salmón para una nutrición completa y digestiva.</p>
+                        <div class="editorial-product-card__footer">
+                            <span class="current-price">S/ 72.50</span>
+                            <button class="add-to-cart-btn" data-button-variant="icon" aria-label="Agregar Grain Free Salmon"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </article>
+                    <article class="product-card editorial-product-card">
+                        <div class="card-image-container">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ5OrUeh7zTTJYU932yq5CWwXzwtqIr0fJ2kM-EchlsXaOuyrM8ivG600nCFPO-hxn5DRI0wn9Md91WTDOIQXch3wq0h00ESRhU5C_81ZX9LCiJlOw_ZxzANrxwwp57hQdjst4wAbJlD3G7VZCK_fnVYGHYFHcWlG-o9C212etU-m-FvtaG7XMO4nHnvh8PTxGxdqEiFF0vse-nPajbriA8uIgeO3oCoU4bjl1zMKmsCnfOzXb6HInt13C63vrmFD5bamCpl6VF6or" alt="Cama cómoda para gato">
+                        </div>
+                        <span class="editorial-product-card__tag">Descanso</span>
+                        <h3>Cama Nube Zen</h3>
+                        <p class="editorial-product-card__description">Cama suave para descanso profundo de gatos y perros pequeños.</p>
+                        <div class="editorial-product-card__footer">
+                            <span class="current-price">S/ 89.00</span>
+                            <button class="add-to-cart-btn" data-button-variant="icon" aria-label="Agregar Cama Nube Zen"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </article>
+                    <article class="product-card editorial-product-card">
+                        <div class="card-image-container">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBsrY_pD5t47NuTjl5xkFFmSq8Q4KkmdqQ5ohtLtlEs1ABIofW2P_XIhViQMJtc7mEk-vU-fiRhthxKDjN5b8CIGEbtBT4ng41AXpD8pi3hAy18wFbscdCYraRK71P69sqtAcriLnO-eXuQAydDj_2C5aQxuNfa8MvTnxdKNvrt0CCQe4wOcrlrvs7XZWZr56tqhGDSF066Xrk2-mTtlmAn4vF6eb_IKsU-i-Rxy_fClcLtYvuyR2sHy8tX1zduX6DKKjXkDyByf28" alt="Juguete interactivo para gato">
+                        </div>
+                        <span class="editorial-product-card__tag editorial-product-card__tag--green">Mente</span>
+                        <h3>Puzzle Interactivo</h3>
+                        <p class="editorial-product-card__description">Juguete de estimulación para mantener su mente activa en casa.</p>
+                        <div class="editorial-product-card__footer">
+                            <span class="current-price">S/ 29.90</span>
+                            <button class="add-to-cart-btn" data-button-variant="icon" aria-label="Agregar Puzzle Interactivo"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!--  SECCIÓN INFORMACIÓN Y BANNERS -->
-
-        <section class="info-section container site-container">
-            <!-- Banner Superior -->
-            <a href="https://wa.me/51902674750" target="_blank" class="banner-ad pm">
-                <img src="img/central-pet/banner-whatsapp.jpg" alt="Agenda su atención o compra por WhatsApp" onerror="this.onerror=null;this.src='img/placeholder.png';">
-            </a>     
-            <div class="info-grid">  
-                <div class="info-card-compound">                  
-                    <div class="card-image-part">
-                        <a href="locales.html"><img src="img/central-pet/banner-delivery.jpg" alt="Delivery pet shop en Huánuco" onerror="this.onerror=null;this.src='img/placeholder.png';"></a>
-                    </div>
-                    <div class="card-text-part">
-                        <h3>DELIVERY PET SHOP</h3>
-                        <p>Llevamos productos para tu mascota a Huánuco, Amarilis, Pillco Marca y zonas aledañas.</p>
-                        <a href="locales.html" class="btn-primary mt-auto">Ver cobertura</a>
-                    </div>
+        <section class="editorial-services">
+            <div class="container site-container editorial-shell">
+                <h2>Servicios de vitalidad</h2>
+                <div class="editorial-service-grid">
+                    <article class="editorial-service-card editorial-service-card--primary">
+                        <span class="material-symbols-outlined">medical_services</span>
+                        <h3>Veterinaria proactiva</h3>
+                        <p>Chequeos, vacunas y orientación preventiva para cuidar cada etapa de su vida.</p>
+                        <a href="https://wa.me/51902674750" target="_blank">Agendar cita <span class="material-symbols-outlined">arrow_forward</span></a>
+                    </article>
+                    <article class="editorial-service-card editorial-service-card--secondary">
+                        <span class="material-symbols-outlined">content_cut</span>
+                        <h3>Estética editorial</h3>
+                        <p>Baño, grooming e higiene con trato amable para que vuelva limpio, cómodo y feliz.</p>
+                        <a href="menu.html#grooming">Ver estilos <span class="material-symbols-outlined">arrow_forward</span></a>
+                    </article>
+                    <article class="editorial-service-card editorial-service-card--accent">
+                        <span class="material-symbols-outlined">pets</span>
+                        <h3>Bienestar diario</h3>
+                        <p>Alimentos, antipulgas, snacks y accesorios recomendados según su rutina.</p>
+                        <a href="menu.html">Ver productos <span class="material-symbols-outlined">arrow_forward</span></a>
+                    </article>
                 </div>
-                <div class="info-card-compound">
-                    <div class="card-image-part">
-                        <a href="promociones.html"><img src="img/central-pet/banner-beneficios.jpg" alt="Beneficios para clientes frecuentes" onerror="this.onerror=null;this.src='img/placeholder.png';"></a>
-                    </div>
-                    <div class="card-text-part">
-                        <h3>BENEFICIOS FRECUENTES</h3>
-                        <p>Accede a promociones, packs de temporada y recomendaciones para cuidar mejor a tu mascota.</p>
-                        <a href="promociones.html" class="btn-primary mt-auto">Ver beneficios</a>
-                    </div>
-                </div>
-
             </div>
+        </section>
 
-            <!-- Banner Inferior -->
-            <a href="locales.html" class="banner-ad ut">
-                <img src="img/central-pet/banner-local.jpg" alt="Atención en Jirón Abtao #311" onerror="this.onerror=null;this.src='img/placeholder.png';">
-            </a>
+        <section class="editorial-advice">
+            <div class="container site-container editorial-shell editorial-advice__grid">
+                <div class="editorial-advice__media">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoZgPSkfW0nvdID1e9qIAwwQqRbng9Iso5wh5mcP88R5fokkL3t7yoGaMRsDNygaeWLbBOKvWJu-vNHoneCiChlLjHos897od_6pO6gOxmalUiiOb1BatQYgrDX6m0JR20LEr_ZfhGfsL-KHpZnj1qwPF3Wj9PduHowkRS8KS-9eC8LzPvfIW_7S9lNyKxab6t1lnWwOo-f3tPD-vqaS42eC6zCkOVhMwjS6ZsmRJPigd4ZE8wSUH444B0eNx9Nf4_jwzrxXRBrCI1" alt="Veterinaria sonriendo mientras sostiene un cachorro">
+                </div>
+                <div class="editorial-advice__copy">
+                    <span class="editorial-kicker">Consejo del mes</span>
+                    <h2>El poder de la dieta <span>holística</span></h2>
+                    <p class="editorial-quote">“La vitalidad no comienza en el parque, comienza en el plato. Una nutrición equilibrada es el primer paso para una rutina más sana y tranquila.”</p>
+                    <div class="editorial-doctor">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA45NBhTHXwTnR4Sf_bLpdbCNnaKxN3uMqszG7cqCmNMqEcUEND6ZYE-mbGYy7cydf5E_i003sb7ve4vgcGJN5MsuaMbArNwbcX8iQttwzDDotTCYz_DfVqr7cGPwKgDf3jvhoaA6nsclYcojQTImZQ0-SzL3ZSlyvKskwtepSyIslk9hic-bOpRU13wK50zrvtk53nAa8pOg6G0qFcRtvUxeEWKHW3WGjrElMK9VIpR0HD1JIerI97AOOrupRflfP6EUzQGut2BGGn" alt="Retrato de doctora veterinaria">
+                        <div>
+                            <strong>Dra. María Fernández</strong>
+                            <span>Directora médica Central Pet</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/51902674750" target="_blank" class="editorial-btn editorial-btn--primary">Consultar por WhatsApp</a>
+                </div>
+            </div>
         </section>
     </main>
     <!-- Carrito flotante para móviles -->
@@ -284,68 +294,24 @@
         </div>
     </div>
 
-    <!-- NUEVO FOOTER DETALLADO -->
-    <footer>
-        <div class="footer-grid container site-container">
-            <div class="footer-column accordion-item">
-                <h4 class="accordion-header">
-                    Nuestros Productos
-                    <i class="fas fa-chevron-down accordion-icon"></i>
-                </h4>
-                <ul class="accordion-content">
-                    <li><a href="menu.html#alimentos">Alimentos</a></li>
-                    <li><a href="menu.html#higiene">Higiene</a></li>
-                    <li><a href="menu.html#antipulgas">Antipulgas</a></li>
-                    <li><a href="menu.html#snacks">Snacks</a></li>
-                    <li><a href="menu.html#accesorios">Accesorios</a></li>
-                    <li><a href="menu.html#juguetes">Juguetes</a></li>
-                    <li><a href="menu.html#servicios-veterinarios">Servicios veterinarios</a></li>
-                    <li><a href="menu.html#grooming">Grooming</a></li>
-                </ul>
-            </div>            
-            <div class="footer-column accordion-item">
-                 <h4 class="accordion-header">
-                    Ayuda
-                    <i class="fas fa-chevron-down accordion-icon"></i>
-                </h4>
-                <ul class="accordion-content">
-                    <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>                    
-                    <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
-                </ul>
+    <footer class="editorial-footer">
+        <div class="container site-container editorial-shell">
+            <div class="editorial-footer__brand">Central Pet</div>
+            <p>Jirón Abtao #311 · WhatsApp +51 902 674 750</p>
+            <div class="editorial-footer__links">
+                <a href="menu.html">Productos</a>
+                <a href="promociones.html">Promociones</a>
+                <a href="locales.html">Locales</a>
+                <a href="terminos-condiciones.html">Términos</a>
+                <a href="politica-privacidad.html">Privacidad</a>
+                <a href="libro-reclamaciones.html">Libro de reclamaciones</a>
             </div>
-            <div class="footer-column">
-                <a href="libro-reclamaciones.html" style="text-decoration: none; color: var(--color-primary); text-align: center; display: inline-block;">
-                    <h4>Libro de Reclamaciones</h4>
-                    <img src="img/Libro_De_Reclamaciones.webp" alt="Libro de Reclamaciones" style="width: 150px; height: auto; display: block; margin: 0 auto;">
-                </a>                
-                <h4 class="mt-2">Métodos de Pago</h4>                
-                <ul class="payment-methods">
-                    <li>
-                        <img src="svg/visa-classic-svgrepo-com.svg" alt="Visa" style="width: 40px; height: auto; vertical-align: middle; margin-right: 5px;">
-                        Visa
-                    </li>
-                    <li>
-                        <img src="svg/mastercard-full-svgrepo-com.svg" alt="Mastercard" style="width: 40px; height: auto; vertical-align: middle; margin-right: 5px;">
-                        Mastercard
-                    </li>
-                    <li>
-                        <img src="svg/Yape Logo Vector.svg" alt="Yape" style="width: 40px; height: 20px; vertical-align: middle; margin-right: 5px;">
-                        Yape
-                    </li>
-                </ul>
+            <div class="social-icons editorial-footer__social">
+                <a href="https://www.facebook.com/centralpet" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.tiktok.com/@centralpet" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/centralpet/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="footer-column">
-                <img src="img/Logo Azul.png" alt="Central Pet Logo" class="footer-logo">
-                <h4>Síguenos en</h4>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/centralpet" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.tiktok.com/@centralpet"target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.instagram.com/centralpet/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 Todos los derechos reservados.</p>
+            <div class="editorial-footer__bottom">© 2025 Central Pet. Todos los derechos reservados.</div>
         </div>
     </footer>
 
