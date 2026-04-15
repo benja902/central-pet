@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promoción | Central Pet</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style-menu.css">
+</head>
+<body class="promotion-detail-page">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary-custom fixed-top">
+            <div class="container site-container px-3">
+                <a class="navbar-brand b-movil" href="index.html">
+                    <img src="img/image.png" alt="Central Pet Logo" class="header-logo">
+                </a>
+                <div class="collapse navbar-collapse" id="agallasNavbar">
+                    <ul class="navbar-nav mx-auto mb-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link" href="menu.html">PRODUCTOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="promociones.html">PROMOS EXCLUSIVAS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="locales.html">LOCALES</a></li>
+                    </ul>
+                </div>
+                <div class="quick-access-icons d-flex align-items-center">
+                    <a href="#" class="nav-icon-link"><i class="fas fa-search"></i></a>
+                    <a href="tel:+51902674750" class="nav-icon-link">
+                        <i class="fas fa-phone"></i>
+                        <span class="phone-text d-none d-lg-inline-block">Llámanos<br>+51 902 674 750</span>
+                    </a>
+                    <a href="https://wa.me/51902674750" target="_blank" class="nav-icon-link user-whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        <span class="whatsapp-text d-none d-lg-inline-block">Escríbenos<br>+51 902 674 750</span>
+                    </a>
+                    <a href="#" class="cart-icon-container">
+                        <div class="cart-circle">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <span class="cart-price d-none d-lg-inline-block">S/ 0.00</span>
+                    </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#agallasNavbar" aria-controls="agallasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="promotion-detail-main">
+        <section class="promotion-detail-hero" id="promotionDetailHero">
+            <div class="site-container promotion-detail-hero__inner">
+                <a class="promotion-detail-back" href="promociones.html">
+                    <i class="fas fa-arrow-left"></i>
+                    Volver a promociones
+                </a>
+                <span class="promotion-detail-kicker">Campaña activa</span>
+                <h1 class="promotion-detail-title" id="promotionDetailTitle">Cargando promoción...</h1>
+                <p class="promotion-detail-subtitle" id="promotionDetailSubtitle">Estamos preparando la campaña seleccionada.</p>
+                <p class="promotion-detail-description" id="promotionDetailDescription">Un momento por favor mientras armamos la selección promocional.</p>
+                <div class="promotion-detail-benefit">
+                    <span class="promotion-detail-benefit__label">Beneficio principal</span>
+                    <span class="promotion-detail-benefit__value" id="promotionDetailBenefit">Promociones exclusivas</span>
+                </div>
+                <p class="promotion-detail-support" id="promotionDetailSupport">Aquí verás los productos incluidos en esta campaña.</p>
+            </div>
+        </section>
+
+        <section class="promotion-detail-products">
+            <div class="container site-container px-3">
+                <div class="promotion-detail-section-heading">
+                    <div>
+                        <span class="promotion-detail-section-kicker">Productos de la campaña</span>
+                        <h2 class="section-title mb-0">Selección promocional</h2>
+                    </div>
+                    <a href="menu.html" class="view-all">Ver carta completa</a>
+                </div>
+
+                <div class="promotion-detail-empty" id="promotionDetailEmpty" hidden>
+                    <p>No encontramos productos asociados a esta promoción todavía.</p>
+                </div>
+
+                <div class="products-grid products-grid--menu-feature promotion-detail-grid" id="promotionDetailProducts"></div>
+            </div>
+        </section>
+
+        <!-- <section class="promotion-detail-terms">
+            <div class="site-container">
+                <div class="promotion-detail-terms__card">
+                    <span class="promotion-detail-section-kicker">Información de la campaña</span>
+                    <h2 class="promotion-detail-terms__title">Términos y condiciones</h2>
+                    <ul class="promotion-detail-terms__list" id="promotionDetailTerms"></ul>
+                </div>
+            </div>
+        </section> -->
+    </main>
+
+    <div class="mobile-cart-container d-md-none">
+        <div class="cart-circle">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+        <span class="cart-price">S/ 0.00</span>
+    </div>
+
+    <div class="product-detail-overlay" id="productDetailOverlay"></div>
+    <div class="product-detail-modal" id="productDetailModal">
+        <div class="product-detail-close">
+            <button class="product-detail-close-btn" id="closeProductDetailBtn">&times;</button>
+        </div>
+        <div class="product-detail-content" id="productDetailContent"></div>
+    </div>
+
+    <div class="cart-modal-overlay" id="cartModalOverlay"></div>
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-header">
+            <h3 class="cart-modal-title">Tu Carrito (<span id="cartItemCount">0</span>)</h3>
+            <button class="cart-modal-close" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-modal-body">
+            <div class="cart-items-list" id="cartItemsList"></div>
+        </div>
+        <div class="cart-modal-footer">
+            <div class="cart-subtotal">
+                <span class="cart-subtotal-label">Total</span>
+                <span class="cart-subtotal-value">S/ 0.00</span>
+            </div>
+            <div class="cart-customer-field">
+                <label for="cartCustomerName" class="cart-customer-label">Nombre del cliente</label>
+                <input type="text" id="cartCustomerName" class="cart-customer-input" placeholder="Escribe tu nombre" autocomplete="name" maxlength="80" required>
+            </div>
+            <button class="cart-continue-btn" id="cartContinueBtn">Continuar</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid container site-container">
+            <div class="footer-column accordion-item">
+                <h4 class="accordion-header">
+                    Nuestros Productos
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </h4>
+                <ul class="accordion-content">
+                    <li><a href="menu.html#piques">Piques</a></li>
+                    <li><a href="menu.html#leches">Leches</a></li>
+                    <li><a href="menu.html#causas">Causas</a></li>
+                    <li><a href="menu.html#frios">Fríos</a></li>
+                    <li><a href="menu.html#combos">Combos</a></li>
+                    <li><a href="menu.html#fondos">Fondos</a></li>
+                    <li><a href="menu.html#fritos">Fritos</a></li>
+                    <li><a href="menu.html#especiales">Especiales</a></li>
+                    <li><a href="menu.html#sopas">Sopas</a></li>
+                    <li><a href="menu.html#bebidas">Bebidas</a></li>
+                </ul>
+            </div>
+            <div class="footer-column accordion-item">
+                <h4 class="accordion-header">
+                    Ayuda
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </h4>
+                <ul class="accordion-content">
+                    <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>
+                    <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <a href="libro-reclamaciones.html" style="text-decoration: none; color: var(--color-primary); text-align: center; display: inline-block;">
+                    <h4>Libro de Reclamaciones</h4>
+                    <img src="img/Libro_De_Reclamaciones.webp" alt="Libro de Reclamaciones" style="width: 150px; height: auto; display: block; margin: 0 auto;">
+                </a>
+                <h4 class="mt-2">Métodos de Pago</h4>
+                <ul class="payment-methods">
+                    <li><img src="svg/visa-classic-svgrepo-com.svg" alt="Visa" style="width: 40px; height: auto; vertical-align: middle; margin-right: 5px;">Visa</li>
+                    <li><img src="svg/mastercard-full-svgrepo-com.svg" alt="Mastercard" style="width: 40px; height: auto; vertical-align: middle; margin-right: 5px;">Mastercard</li>
+                    <li><img src="svg/Yape Logo Vector.svg" alt="Yape" style="width: 40px; height: 20px; vertical-align: middle; margin-right: 5px;">Yape</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <img src="img/Logo Azul.png" alt="Central Pet Logo" class="footer-logo">
+                <h4>Síguenos en</h4>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/centralpet" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@centralpet" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/centralpet/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="#" id="back-to-top" class="back-to-top-btn" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
+
+
+
