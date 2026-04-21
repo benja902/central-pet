@@ -1,21 +1,27 @@
 /* ========== PAGINA DE LOCALES ========== */
 
 .locales-page {
-    --locales-primary: var(--color-primary);
-    --locales-secondary: var(--color-secondary);
-    --locales-red: var(--color-accent);
-    --locales-ink: var(--color-text);
-    --locales-muted: var(--color-text-light);
-    --locales-surface: var(--color-background);
-    --locales-surface-strong: var(--color-surface);
-    --locales-card: var(--color-white);
-    --locales-line: rgba(217, 31, 50, 0.12);
-    --locales-shadow: 0 18px 48px rgba(26, 26, 26, 0.1);
-    --locales-radius-xl: 24px;
-    --locales-radius-lg: 16px;
-    --locales-radius-md: 8px;
+    --locales-primary: #ba0022;
+    --locales-primary-hover: #9f001d;
+    --locales-secondary: #ffc78b;
+    --locales-secondary-ink: #845000;
+    --locales-tertiary: #d6ef4f;
+    --locales-tertiary-ink: #546200;
+    --locales-ink: #312e2c;
+    --locales-muted: #5f5b58;
+    --locales-surface: #fcf5f1;
+    --locales-surface-strong: #f6efeb;
+    --locales-card: rgba(255, 255, 255, 0.86);
+    --locales-line: rgba(186, 0, 34, 0.12);
+    --locales-shadow: 0 24px 60px rgba(49, 46, 44, 0.08);
+    --locales-radius-xl: 28px;
+    --locales-radius-lg: 22px;
+    --locales-radius-md: 12px;
     --bs-primary: var(--color-primary);
     --bs-primary-rgb: 217, 31, 50;
+    background: var(--locales-surface);
+    color: var(--locales-ink);
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .locales-page main {
@@ -23,16 +29,55 @@
     background: var(--locales-surface);
 }
 
+.locales-editorial-page .bg-primary-custom {
+    background: rgba(252, 245, 241, 0.88) !important;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 18px 35px rgba(49, 46, 44, 0.08);
+}
+
+.locales-editorial-page .navbar-nav .nav-link,
+.locales-editorial-page .nav-icon-link {
+    color: var(--locales-muted);
+}
+
+.locales-editorial-page .navbar-nav .nav-link:hover,
+.locales-editorial-page .navbar-nav .nav-link.active,
+.locales-editorial-page .nav-icon-link:hover {
+    color: var(--locales-primary);
+}
+
+.locales-editorial-page .navbar-nav .nav-link::after {
+    background: var(--locales-primary);
+}
+
+.locales-editorial-page .cart-circle {
+    background: var(--locales-primary);
+}
+
+.locales-editorial-page .cart-circle i {
+    color: #fff;
+}
+
+.locales-editorial-page .cart-price,
+.locales-editorial-page .phone-text,
+.locales-editorial-page .whatsapp-text {
+    color: var(--locales-ink);
+}
+
+.locales-editorial-page .navbar-toggler-icon {
+    filter: invert(1);
+}
+
 .locales-page .btn {
     min-height: 48px;
-    border-radius: var(--locales-radius-md);
+    border-radius: 999px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.55rem;
     border: 0;
     font-weight: 800;
-    letter-spacing: 0;
+    letter-spacing: 0.01em;
 }
 
 .locales-page .btn:hover {
@@ -44,7 +89,7 @@
 }
 
 .locales-hero {
-    padding: 2rem 0 1rem;
+    padding: 2.25rem 0 1.4rem;
 }
 
 .locales-hero-grid {
@@ -65,13 +110,14 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1rem;
-    padding: 0.45rem 0.7rem;
+    padding: 0.55rem 0.9rem;
     border-radius: 999px;
-    background: rgba(255, 209, 0, 0.18);
+    background: var(--locales-secondary);
     color: var(--locales-primary);
-    font-size: 0.66rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
     font-weight: 900;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
@@ -80,18 +126,21 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--locales-secondary);
-    box-shadow: 0 0 0 4px rgba(255, 209, 0, 0.22);
+    background: var(--locales-primary);
+    box-shadow: 0 0 0 4px rgba(255, 199, 139, 0.5);
 }
 
 .locales-hero-title {
     max-width: 760px;
     margin: 0;
-    color: var(--locales-primary) !important;
-    font-family: "var(--font-heading);
-    font-size: clamp(2.7rem, 14vw, 4rem);
+    color: var(--locales-ink) !important;
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(2.15rem, 11.1vw, 3.2rem);
+    font-style: italic;
+    font-weight: 900;
     line-height: 0.88;
     text-wrap: balance;
+    text-transform: uppercase;
 }
 
 .locales-hero-copy p {
@@ -99,6 +148,7 @@
     margin: 0.75rem 0 0;
     color: var(--locales-muted);
     font-size: 0.98rem;
+    font-weight: 600;
     line-height: 1.6;
 }
 
@@ -115,7 +165,7 @@
 .locales-page .btn.locales-floating-action {
     background: var(--locales-primary);
     color: #fff;
-    box-shadow: 0 16px 28px rgba(217, 31, 50, 0.18);
+    box-shadow: none;
 }
 
 .locales-page .btn.locales-primary-action:hover,
@@ -126,16 +176,16 @@
 .locales-page .btn.locales-floating-action:focus,
 .locales-page .btn.locales-floating-action:active,
 .locales-page .btn.locales-floating-action:first-child:active {
-    background: var(--color-primary-hover);
+    background: var(--locales-primary-hover);
     color: #fff;
-    border-color: var(--color-primary-hover);
+    border-color: var(--locales-primary-hover);
 }
 
 .locales-page .btn.locales-whatsapp-action,
 .locales-page .btn.locales-cta-whatsapp {
-    background: var(--color-accent);
-    color: #fff;
-    box-shadow: 0 14px 26px rgba(168, 191, 31, 0.22);
+    background: var(--locales-tertiary);
+    color: var(--locales-tertiary-ink);
+    box-shadow: none;
 }
 
 .locales-page .btn.locales-whatsapp-action:hover,
@@ -146,13 +196,13 @@
 .locales-page .btn.locales-cta-whatsapp:focus,
 .locales-page .btn.locales-cta-whatsapp:active,
 .locales-page .btn.locales-cta-whatsapp:first-child:active {
-    background: var(--color-accent-hover);
-    color: #fff;
-    border-color: var(--color-accent-hover);
+    background: #bfd934;
+    color: var(--locales-tertiary-ink);
+    border-color: #bfd934;
 }
 
 .locales-page .btn.locales-call-action {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.76);
     color: var(--locales-primary);
     box-shadow: inset 0 0 0 1px var(--locales-line);
 }
@@ -185,7 +235,7 @@
     min-height: 430px;
     overflow: hidden;
     border-radius: 0;
-    background: #dce4ed;
+    background: #e8e1dc;
 }
 
 .locales-map-canvas {
@@ -205,7 +255,7 @@
     gap: 1rem;
     padding: 1.5rem;
     text-align: center;
-    background: #dce4ed;
+    background: #e8e1dc;
 }
 
 .locales-map-fallback[hidden] {
@@ -214,7 +264,7 @@
 
 .locales-map-fallback p {
     margin: 0;
-    color: var(--locales-primary);
+    color: var(--locales-ink);
     font-weight: 800;
 }
 
@@ -277,7 +327,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: rgba(26, 45, 75, 0.03);
+    background: rgba(49, 46, 44, 0.04);
 }
 
 .locales-floating-card {
@@ -288,8 +338,8 @@
     max-width: none;
     padding: 1rem;
     border-radius: var(--locales-radius-lg);
-    background: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 22px 48px rgba(23, 34, 54, 0.17);
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 22px 48px rgba(49, 46, 44, 0.12);
     backdrop-filter: blur(14px);
 }
 
@@ -304,10 +354,12 @@
 
 .locales-floating-card h2 {
     margin: 0;
-    color: var(--locales-primary);
-    font-family: "var(--font-heading);
-    font-size: 2rem;
-    line-height: 0.9;
+    color: var(--locales-ink);
+    font-family: 'Epilogue', sans-serif;
+    font-size: 2.15rem;
+    font-style: italic;
+    font-weight: 900;
+    line-height: 0.92;
 }
 
 .locales-floating-card p {
@@ -360,15 +412,16 @@
     position: relative;
     padding: 1.15rem;
     border-radius: var(--locales-radius-lg);
-    background: #fff;
-    box-shadow: 0 10px 28px rgba(23, 34, 54, 0.07);
+    background: var(--locales-card);
+    box-shadow: 0 14px 34px rgba(49, 46, 44, 0.06);
+    backdrop-filter: blur(10px);
 }
 
 .locales-info-number {
     position: absolute;
     top: 0.6rem;
     left: 0.8rem;
-    color: rgba(26, 45, 75, 0.055);
+    color: rgba(49, 46, 44, 0.05);
     font-size: 3rem;
     font-weight: 900;
     line-height: 1;
@@ -380,9 +433,9 @@
     display: block;
     margin-bottom: 0.8rem;
     color: var(--locales-primary);
-    font-size: 0.74rem;
+    font-size: 0.72rem;
     font-weight: 900;
-    letter-spacing: 0.13em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
 }
 
@@ -390,6 +443,7 @@
     position: relative;
     margin: 0;
     color: var(--locales-ink);
+    font-family: 'Epilogue', sans-serif;
     font-size: 1.32rem;
     font-weight: 900;
     line-height: 1.08;
@@ -412,6 +466,7 @@
     padding: 1rem;
     border-radius: var(--locales-radius-lg);
     background: var(--locales-surface-strong);
+    box-shadow: inset 0 0 0 1px rgba(49, 46, 44, 0.05);
 }
 
 .locales-hours-card span {
@@ -469,8 +524,9 @@
     padding: 1.15rem;
     overflow: hidden;
     border-radius: var(--locales-radius-lg);
-    background: #fff;
-    box-shadow: 0 12px 34px rgba(23, 34, 54, 0.08);
+    background: var(--locales-card);
+    box-shadow: 0 16px 36px rgba(49, 46, 44, 0.07);
+    backdrop-filter: blur(10px);
 }
 
 .locales-detail-card > i {
@@ -492,12 +548,13 @@
     width: 118px;
     height: 118px;
     border-radius: 50%;
-    background: rgba(255, 209, 0, 0.22);
+    background: rgba(255, 199, 139, 0.34);
 }
 
 .locales-detail-card h3 {
     margin: 0 0 0.6rem;
     color: var(--locales-ink);
+    font-family: 'Epilogue', sans-serif;
     font-size: 1.08rem;
     font-weight: 900;
 }
@@ -516,7 +573,7 @@
     margin: 1.6rem 16px 0;
     padding: 1.25rem;
     border-radius: var(--locales-radius-lg);
-    background: var(--locales-primary);
+    background: var(--locales-ink);
     box-shadow: var(--locales-shadow);
     text-align: center;
 }
@@ -524,8 +581,10 @@
 .locales-cta h2 {
     margin: 0;
     color: #fff;
-    font-family: "var(--font-heading);
+    font-family: 'Epilogue', sans-serif;
     font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-style: italic;
+    font-weight: 900;
     line-height: 0.95;
 }
 
@@ -550,16 +609,16 @@
 
 .locales-page .btn.locales-menu-action {
     background: var(--locales-secondary);
-    color: var(--locales-primary);
+    color: var(--locales-secondary-ink);
 }
 
 .locales-page .btn.locales-menu-action:hover,
 .locales-page .btn.locales-menu-action:focus,
 .locales-page .btn.locales-menu-action:active,
 .locales-page .btn.locales-menu-action:first-child:active {
-    background: #e5bc00;
-    color: var(--locales-primary);
-    border-color: #e5bc00;
+    background: #f0b977;
+    color: var(--locales-secondary-ink);
+    border-color: #f0b977;
 }
 
 @media (min-width: 576px) {
@@ -657,7 +716,7 @@
     .locales-info-panel {
         gap: clamp(1.8rem, 4vw, 3.5rem);
         padding: 2rem;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.92);
     }
 
     .locales-info-block {
@@ -665,6 +724,7 @@
         border-radius: 0;
         background: transparent;
         box-shadow: none;
+        backdrop-filter: none;
     }
 
     .locales-info-number {
@@ -773,6 +833,14 @@
 
     .locales-cta-actions {
         justify-content: flex-end;
+    }
+}
+
+@media (max-width: 991px) {
+    .locales-editorial-page .navbar-collapse {
+        background: rgba(252, 245, 241, 0.96);
+        border: 1px solid rgba(49, 46, 44, 0.1);
+        box-shadow: 0 18px 35px rgba(49, 46, 44, 0.12);
     }
 }
 
