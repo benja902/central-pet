@@ -15,23 +15,47 @@ export function getCurrentMonthIndex(date = new Date()) {
     return date.getMonth();
 }
 
+export function normalizeDateInput(value) {
+    const date = value instanceof Date ? new Date(value) : new Date(`${value}T00:00:00`);
+    date.setHours(0, 0, 0, 0);
+    return date;
+}
+
+export function isDateWithinPromotion(date, campaign) {
+    if (!campaign?.startDate || !campaign?.endDate) return false;
+
+    const targetDate = normalizeDateInput(date);
+    const startDate = normalizeDateInput(campaign.startDate);
+    const endDate = normalizeDateInput(campaign.endDate);
+
+    return targetDate >= startDate && targetDate <= endDate;
+}
+
+export function sortCampaignsByStartDate(campaigns = promotionCampaigns) {
+    return [...campaigns].sort((campaignA, campaignB) => (
+        normalizeDateInput(campaignA.startDate) - normalizeDateInput(campaignB.startDate)
+    ));
+}
+
 export function getPromotionCampaignBySlug(slug) {
     return promotionCampaigns.find((campaign) => campaign.slug === slug) || null;
 }
 
 export function getActivePromotionCampaign(date = new Date()) {
-    const currentMonth = getCurrentMonthIndex(date);
-    return promotionCampaigns.find((campaign) => campaign.monthIndex === currentMonth) || null;
+    return sortCampaignsByStartDate().find((campaign) => isDateWithinPromotion(date, campaign)) || null;
+}
+
+export function getUpcomingPromotionCampaign(date = new Date()) {
+    const targetDate = normalizeDateInput(date);
+
+    return sortCampaignsByStartDate().find((campaign) => normalizeDateInput(campaign.startDate) > targetDate) || null;
 }
 
 export function getActiveOrUpcomingPromotionCampaign(date = new Date()) {
     const activeCampaign = getActivePromotionCampaign(date);
     if (activeCampaign) return activeCampaign;
 
-    const currentMonth = getCurrentMonthIndex(date);
-    const upcomingCampaign = promotionCampaigns.find((campaign) => campaign.monthIndex > currentMonth);
-
-    return upcomingCampaign || promotionCampaigns[0] || null;
+    return getUpcomingPromotionCampaign(date) || sortCampaignsByStartDate()[0] || null;
 }
 
 export function buildPromotionProducts(campaign) {

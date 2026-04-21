@@ -2545,26 +2545,84 @@ footer {
 
 /* --- DETALLE DE PROMOCION --- */
 .promotion-detail-page {
-    background: linear-gradient(180deg, #fbfaf8 0%, #f5f2ed 100%);
+    --promotion-detail-bg: #fcf5f1;
+    --promotion-detail-surface: #f6efeb;
+    --promotion-detail-surface-strong: rgba(255, 255, 255, 0.88);
+    --promotion-detail-dark: #312e2c;
+    --promotion-detail-muted: #5f5b58;
+    --promotion-detail-primary: #ba0022;
+    --promotion-detail-primary-soft: #ff7573;
+    --promotion-detail-secondary: #ffc78b;
+    --promotion-detail-secondary-ink: #845000;
+    background: var(--promotion-detail-bg);
+}
+
+.promotion-detail-editorial-page .bg-primary-custom {
+    background: rgba(252, 245, 241, 0.88) !important;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 18px 35px rgba(49, 46, 44, 0.08);
+}
+
+.promotion-detail-editorial-page .navbar-nav .nav-link,
+.promotion-detail-editorial-page .nav-icon-link {
+    color: var(--promotion-detail-muted);
+}
+
+.promotion-detail-editorial-page .navbar-nav .nav-link:hover,
+.promotion-detail-editorial-page .navbar-nav .nav-link.active,
+.promotion-detail-editorial-page .nav-icon-link:hover {
+    color: var(--promotion-detail-primary);
+}
+
+.promotion-detail-editorial-page .navbar-nav .nav-link::after {
+    background: var(--promotion-detail-primary);
+}
+
+.promotion-detail-editorial-page .cart-circle {
+    background: var(--promotion-detail-primary);
+}
+
+.promotion-detail-editorial-page .cart-circle i {
+    color: #fff;
+}
+
+.promotion-detail-editorial-page .cart-price,
+.promotion-detail-editorial-page .phone-text,
+.promotion-detail-editorial-page .whatsapp-text {
+    color: var(--promotion-detail-dark);
+}
+
+.promotion-detail-editorial-page .navbar-toggler-icon {
+    filter: invert(1);
 }
 
 .promotion-detail-main {
     padding-top: 0;
-    margin-top: 0 !important;
 }
 
 .promotion-detail-hero {
     position: relative;
-    min-height: 300px;
+    min-height: 340px;
     display: flex;
     align-items: end;
-    padding: 92px 0 22px;
+    padding: 98px 0 28px;
     background-size: cover;
     background-position: center center;
 }
 
+.promotion-detail-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(49, 46, 44, 0.12), rgba(49, 46, 44, 0.68)),
+        linear-gradient(120deg, rgba(255, 199, 139, 0.2), transparent 40%);
+}
+
 .promotion-detail-hero__inner {
+    position: relative;
     color: #fff;
+    max-width: 920px;
 }
 
 .promotion-detail-back {
@@ -2572,11 +2630,13 @@ footer {
     align-items: center;
     gap: 10px;
     margin-bottom: 14px;
-    color: rgba(255, 255, 255, 0.88);
-    font-family: var(--font-heading);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.78rem;
-    font-weight: 700;
+    font-weight: 800;
+    letter-spacing: 0.08em;
     text-decoration: none;
+    text-transform: uppercase;
 }
 
 .promotion-detail-back:hover {
@@ -2587,73 +2647,82 @@ footer {
 .promotion-detail-section-kicker,
 .promotion-detail-benefit__label {
     display: inline-block;
-    color: var(--color-secondary);
-    font-family: var(--font-heading);
-    font-size: 0.66rem;
-    font-weight: 800;
+    color: var(--promotion-detail-secondary);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 900;
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
 .promotion-detail-title {
-    max-width: none;
-    margin: 10px 0 0;
-    font-family: var(--font-heading);
-    font-size: clamp(2.05rem, 10vw, 3rem);
-    font-weight: 800;
+    max-width: 12ch;
+    margin: 12px 0 0;
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(2.8rem, 10vw, 4.9rem);
+    font-style: italic;
+    font-weight: 900;
     letter-spacing: -0.03em;
-    line-height: 1;
+    line-height: 0.94;
+    text-transform: uppercase;
 }
 
 .promotion-detail-subtitle {
-    margin: 10px 0 0;
-    font-family: var(--font-heading);
-    font-size: 0.88rem;
+    max-width: 42ch;
+    margin: 14px 0 0;
+    font-family: 'Epilogue', sans-serif;
+    font-size: 1rem;
+    font-style: italic;
     font-weight: 700;
-    line-height: 1.4;
+    line-height: 1.35;
     color: rgba(255, 255, 255, 0.94);
 }
 
 .promotion-detail-description {
     max-width: 62ch;
-    margin: 10px 0 0;
-    font-family: var(--font-heading);
-    font-size: 0.82rem;
-    line-height: 1.55;
+    margin: 14px 0 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.72;
     color: rgba(255, 255, 255, 0.88);
 }
 
 .promotion-detail-benefit {
     display: inline-flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.7rem;
     width: 100%;
-    margin-top: 14px;
-    padding: 12px 14px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(18px);
+    max-width: 420px;
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px);
 }
 
 .promotion-detail-benefit__value {
     color: #fff;
-    font-family: var(--font-heading);
-    font-size: clamp(1.25rem, 6vw, 1.72rem);
-    font-weight: 700;
-    line-height: 1.05;
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(1.35rem, 6vw, 2rem);
+    font-style: italic;
+    font-weight: 900;
+    line-height: 1;
 }
 
 .promotion-detail-support {
-    margin: 10px 0 0;
-    font-family: var(--font-heading);
-    font-size: 0.78rem;
+    max-width: 58ch;
+    margin: 14px 0 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.82rem;
     font-weight: 600;
-    line-height: 1.45;
+    line-height: 1.6;
     color: rgba(255, 255, 255, 0.85);
 }
 
 .promotion-detail-products {
-    padding: 28px 0 30px;
+    padding: 34px 0 40px;
 }
 
 .promotion-detail-section-heading {
@@ -2662,15 +2731,27 @@ footer {
     align-items: start;
     justify-content: space-between;
     gap: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+}
+
+.promotion-detail-section-heading h2 {
+    margin-top: 0.55rem;
+    color: var(--promotion-detail-dark);
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-style: italic;
+    font-weight: 900;
+    line-height: 0.96;
 }
 
 .promotion-detail-grid {
-    gap: 16px;
+    gap: 18px;
 }
 
 .product-card--promo-detail {
     position: relative;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 18px 44px rgba(49, 46, 44, 0.08);
 }
 
 .product-card--promo-detail .discount-tag {
@@ -2678,10 +2759,23 @@ footer {
     left: 14px;
     z-index: 2;
     border-radius: 999px;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+    background: var(--promotion-detail-primary);
     color: #fff;
     font-size: 0.72rem;
     letter-spacing: 0.08em;
+}
+
+.product-card--promo-detail .promo-card__campaign-label {
+    display: inline-flex;
+    margin-bottom: 0.85rem;
+    padding: 0.42rem 0.78rem;
+    border-radius: 999px;
+    background: rgba(255, 199, 139, 0.34);
+    color: var(--promotion-detail-primary);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .product-card--promo-detail .price--promo-detail {
@@ -2694,7 +2788,7 @@ footer {
 }
 
 .product-card--promo-detail .old-price {
-    color: var(--color-primary);
+    color: var(--promotion-detail-primary);
     font-size: 0.82rem;
     font-weight: 700;
     text-decoration: line-through;
@@ -2703,7 +2797,7 @@ footer {
 }
 
 .product-card--promo-detail .current-price {
-    color: #111827;
+    color: var(--promotion-detail-dark);
     white-space: nowrap;
     line-height: 1;
 }
@@ -2717,9 +2811,18 @@ footer {
 }
 
 .promotion-detail-empty {
-    padding: 24px 0;
-    color: var(--color-text-light);
-    font-family: var(--font-heading);
+    padding: 24px 0 8px;
+}
+
+.promotion-detail-empty p {
+    margin: 0;
+    padding: 1rem 1.1rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--promotion-detail-muted);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    line-height: 1.7;
 }
 
 .promotion-detail-terms {
@@ -3078,6 +3181,17 @@ footer {
 
     .promotion-detail-section-heading {
         margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .promotion-detail-benefit {
+        max-width: 680px;
+        padding: 16px 18px;
+    }
+
+    .promotion-detail-benefit__value {
+        line-height: 1.08;
     }
 }
 
@@ -3505,13 +3619,13 @@ footer {
 
 @media (min-width: 992px) {
     .promotion-detail-hero {
-        min-height: 460px;
-        padding: 126px 0 48px;
+        min-height: 520px;
+        padding: 132px 0 56px;
     }
 
     .promotion-detail-back {
         margin-bottom: 24px;
-        font-size: 0.9rem;
+        font-size: 0.84rem;
     }
 
     .promotion-detail-kicker,
@@ -3524,15 +3638,15 @@ footer {
     .promotion-detail-title {
         max-width: 12ch;
         margin-top: 14px;
-        font-size: clamp(3rem, 6vw, 5.8rem);
+        font-size: clamp(3.3rem, 6vw, 5.8rem);
         letter-spacing: -0.04em;
         line-height: 0.95;
     }
 
     .promotion-detail-subtitle {
         margin-top: 16px;
-        font-size: 1.08rem;
-        line-height: 1.6;
+        font-size: 1.2rem;
+        line-height: 1.45;
     }
 
     .promotion-detail-description {
@@ -3544,12 +3658,12 @@ footer {
     .promotion-detail-benefit {
         width: auto;
         margin-top: 28px;
-        padding: 18px 20px;
-        border-radius: 24px;
+        padding: 18px 22px;
+        border-radius: 26px;
     }
 
     .promotion-detail-benefit__value {
-        font-size: clamp(1.55rem, 3vw, 2.25rem);
+        font-size: clamp(1.65rem, 3vw, 2.4rem);
     }
 
     .promotion-detail-support {
@@ -3559,7 +3673,7 @@ footer {
     }
 
     .promotion-detail-products {
-        padding-top: 42px;
+        padding-top: 48px;
     }
 
     .promotion-detail-section-heading {
@@ -3887,6 +4001,20 @@ footer {
 .home-editorial-page .phone-text,
 .home-editorial-page .whatsapp-text {
     color: var(--editorial-dark);
+}
+
+@media (max-width: 991px) {
+    .promotion-detail-editorial-page .navbar-collapse {
+        background: rgba(252, 245, 241, 0.96);
+        border: 1px solid rgba(49, 46, 44, 0.1);
+        box-shadow: 0 18px 35px rgba(49, 46, 44, 0.12);
+    }
+
+    .promotion-detail-editorial-page .cart-price,
+    .promotion-detail-editorial-page .phone-text,
+    .promotion-detail-editorial-page .whatsapp-text {
+        color: #fff;
+    }
 }
 
 .home-editorial-page .navbar-toggler-icon {
@@ -4661,6 +4789,12 @@ footer {
         border: 1px solid rgba(49, 46, 44, 0.1);
     }
 
+    .promotions-editorial-page .cart-price,
+    .promotions-editorial-page .phone-text,
+    .promotions-editorial-page .whatsapp-text {
+        color: #fff;
+    }
+
     .promotions-editorial-page .promotions-hero__content {
         text-align: left;
         margin: 0;
@@ -4841,63 +4975,167 @@ footer {
     font-style: italic;
 }
 
-.editorial-footer {
+.site-footer {
     padding: clamp(4rem, 8vw, 6rem) 0 2rem;
-    background: var(--editorial-surface);
-    color: var(--editorial-muted);
-    text-align: center;
+    background: #f6efeb;
+    border-top: 1px solid rgba(49, 46, 44, 0.08);
+    color: #5f5b58;
 }
 
-.editorial-footer__brand {
-    margin-bottom: 1rem;
-    color: var(--editorial-primary);
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
+.site-footer__inner {
+    max-width: 1440px;
+    padding-left: clamp(18px, 4vw, 48px);
+    padding-right: clamp(18px, 4vw, 48px);
+}
+
+.site-footer__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.8fr 1fr;
+    gap: clamp(1.8rem, 4vw, 4rem);
+    align-items: start;
+}
+
+.site-footer__column {
+    min-width: 0;
+}
+
+.site-footer__column--brand {
+    text-align: left;
+}
+
+.site-footer__brand {
+    margin-bottom: 0.9rem;
+    color: #312e2c;
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-style: italic;
+    font-weight: 900;
+    line-height: 0.96;
+}
+
+.site-footer__text {
+    margin: 0 0 0.55rem;
+    color: #5f5b58;
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+.site-footer__contact {
+    display: inline-block;
+    margin-bottom: 1.35rem;
+    color: #ba0022;
+    font-size: 0.95rem;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.site-footer__contact:hover {
+    color: #9f001d;
+}
+
+.site-footer__title {
+    display: block;
+    margin: 0 0 1rem;
+    color: #312e2c;
+    font-family: 'Epilogue', sans-serif;
+    font-size: 1.45rem;
     font-style: italic;
     font-weight: 900;
     line-height: 1;
 }
 
-.editorial-footer p {
-    margin: 0 0 2rem;
-    color: var(--editorial-muted);
-    font-weight: 700;
+.site-footer__links {
+    display: grid;
+    gap: 0.8rem;
 }
 
-.editorial-footer__links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem 2rem;
-    margin-bottom: 2rem;
-}
-
-.editorial-footer__links a {
-    color: var(--editorial-muted);
-    font-size: 0.82rem;
+.site-footer__links a {
+    color: #5f5b58;
+    font-size: 0.88rem;
     font-weight: 900;
     letter-spacing: 0.08em;
     text-decoration: none;
     text-transform: uppercase;
 }
 
-.editorial-footer__links a:hover {
-    color: var(--editorial-primary);
+.site-footer__links a:hover {
+    color: #ba0022;
     text-decoration: underline;
     text-underline-offset: 6px;
 }
 
-.editorial-footer__social {
-    justify-content: center;
-    margin-bottom: 2rem;
+.site-footer__claims {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
 }
 
-.editorial-footer__bottom {
-    padding-top: 2rem;
+.site-footer__claims-image {
+    width: 150px;
+    height: auto;
+    border-radius: 18px;
+    box-shadow: 0 18px 34px rgba(49, 46, 44, 0.08);
+}
+
+.site-footer__payments {
+    margin-top: 0.35rem;
+}
+
+.site-footer__payment-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.site-footer__payment-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 44px;
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.82);
+    color: #5f5b58;
+    font-size: 0.82rem;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: inset 0 0 0 1px rgba(49, 46, 44, 0.06);
+}
+
+.site-footer__payment-item img {
+    width: 34px;
+    height: auto;
+    object-fit: contain;
+}
+
+.site-footer__social {
+    justify-content: flex-start;
+    margin-top: 0.1rem;
+}
+
+.site-footer__social a {
+    background: rgba(255, 255, 255, 0.82);
+    color: #312e2c;
+    box-shadow: inset 0 0 0 1px rgba(49, 46, 44, 0.06);
+}
+
+.site-footer__social a:hover {
+    background: #ba0022;
+    color: #fff;
+}
+
+.site-footer__bottom {
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding-top: 1.5rem;
     border-top: 1px solid rgba(49, 46, 44, 0.12);
     color: #8b8581;
     font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.08em;
+    text-align: center;
     text-transform: uppercase;
 }
 
@@ -4926,6 +5164,12 @@ footer {
         background: rgba(252, 245, 241, 0.96);
         border: 1px solid rgba(49, 46, 44, 0.1);
         box-shadow: 0 18px 35px rgba(49, 46, 44, 0.12);
+    }
+
+    .home-editorial-page .cart-price,
+    .home-editorial-page .phone-text,
+    .home-editorial-page .whatsapp-text {
+        color: #fff;
     }
 
     .editorial-promo-grid,
@@ -5034,8 +5278,29 @@ footer {
         border-radius: 22px;
     }
 
-    .editorial-footer__links {
-        gap: 0.8rem 1.1rem;
+    .site-footer__grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .site-footer__column,
+    .site-footer__column--brand {
+        text-align: center;
+    }
+
+    .site-footer__contact {
+        margin-bottom: 1.1rem;
+    }
+
+    .site-footer__claims {
+        align-items: center;
+        margin-bottom: 1.25rem;
+    }
+
+    .site-footer__payment-list,
+    .site-footer__social {
+        justify-content: center;
     }
 }
 

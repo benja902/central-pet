@@ -34,15 +34,22 @@ class PromotionCardEnhancer {
         return title ? title.textContent.trim() : '';
     }
 
+    getCardKey(card) {
+        const productId = normalizeProductKey(card.dataset.productId);
+        if (productId) return productId;
+
+        return normalizeProductKey(this.getCardTitle(card));
+    }
+
     getPromotionProduct(card) {
-        const productKey = normalizeProductKey(this.getCardTitle(card));
+        const productKey = this.getCardKey(card);
         if (!productKey) return null;
 
         return this.activePromotionMap.get(productKey) || null;
     }
 
     getBaseProduct(card) {
-        const productKey = normalizeProductKey(this.getCardTitle(card));
+        const productKey = this.getCardKey(card);
         if (!productKey) return null;
 
         return this.productMap.get(productKey) || null;
@@ -97,10 +104,15 @@ class PromotionCardEnhancer {
         const image = card.querySelector('.card-image-container img');
         const description = card.querySelector('.card-content p');
         const price = card.querySelector('.price');
+        const title = card.querySelector('.card-content h3');
 
         if (image) {
             image.src = baseProduct.image;
             image.alt = baseProduct.name;
+        }
+
+        if (title) {
+            title.textContent = baseProduct.name;
         }
 
         if (description) {

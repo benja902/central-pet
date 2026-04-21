@@ -1,6 +1,12 @@
 import { safeQuerySelector } from '../utils/helpers.js';
 import { promotionCalendar } from '../data/promotions-data.js';
 import { BREAKPOINTS } from '../breakpoints.js';
+import {
+    getActivePromotionCampaign,
+    getActiveOrUpcomingPromotionCampaign,
+    isDateWithinPromotion,
+    normalizeDateInput
+} from '../utils/promotion-helpers.js';
 
 class PromotionsManager {
     constructor() {
@@ -22,55 +28,78 @@ class PromotionsManager {
 
     getCurrentContext() {
         const today = new Date();
-        const currentMonth = today.getMonth();
-        const currentPromotion = this.promotions.find((promotion) => promotion.monthIndex === currentMonth) || null;
+        const activeCampaign = getActivePromotionCampaign(today);
+        const featuredCampaign = getActiveOrUpcomingPromotionCampaign(today);
+        const activePromotion = activeCampaign
+            ? this.promotions.find((promotion) => promotion.slug === activeCampaign.slug) || null
+            : null;
+        const featuredPromotion = featuredCampaign
+            ? this.promotions.find((promotion) => promotion.slug === featuredCampaign.slug) || null
+            : null;
 
         return {
             today,
-            currentMonth,
-            currentPromotion
+            activePromotion,
+            featuredPromotion
         };
     }
 
-    getPromotionState(monthIndex, currentMonth) {
-        if (monthIndex === currentMonth) return 'active';
-        return monthIndex < currentMonth ? 'past' : 'upcoming';
+    getPromotionState(promotion, today) {
+        if (isDateWithinPromotion(today, promotion)) return 'active';
+        if (normalizeDateInput(promotion.endDate) < normalizeDateInput(today)) return 'past';
+        return 'upcoming';
     }
 
-    getStatusLabel(state, promotion) {
+    getStatusLabel(state) {
         if (state === 'active') return 'Disponible ahora';
-        if (state === 'past') return 'Edición de temporada';
+        if (state === 'past') return 'Temporada pasada';
         return 'Próximamente';
     }
 
+    formatRange(dateString) {
+        return new Intl.DateTimeFormat('es-PE', {
+            day: 'numeric',
+            month: 'long'
+        }).format(normalizeDateInput(dateString));
+    }
+
     getAvailabilityCopy(state, promotion) {
+        const rangeText = `${this.formatRange(promotion.startDate)} al ${this.formatRange(promotion.endDate)}`;
+
         if (state === 'active') {
-            return 'Disponible por tiempo limitado en Central Pet.';
+            return `Vigente del ${rangeText} en Central Pet.`;
         }
 
         if (state === 'past') {
-            return 'Parte de nuestras promociones exclusivas del año.';
+            return `Se realizó del ${rangeText} como parte de nuestro calendario promocional.`;
         }
 
-        return `Disponible en su temporada especial de ${promotion.dateLabel}.`;
+        return `Programada del ${rangeText}.`;
     }
 
-    updateSummary(currentPromotion) {
+    updateSummary(activePromotion, featuredPromotion) {
         if (!this.summaryName || !this.summaryMeta) return;
 
-        if (currentPromotion) {
-            const summaryTitle = currentPromotion.eventName === currentPromotion.promoTitle
-                ? currentPromotion.promoTitle
-                : `${currentPromotion.eventName} · ${currentPromotion.promoTitle}`;
+        if (activePromotion) {
+            const summaryTitle = activePromotion.eventName === activePromotion.promoTitle
+                ? activePromotion.promoTitle
+                : `${activePromotion.eventName} · ${activePromotion.promoTitle}`;
 
             this.summaryName.textContent = summaryTitle;
-            this.summaryMeta.textContent = 'Esta es la experiencia especial que tenemos disponible en este momento.';
+            this.summaryMeta.textContent = 'Esta es la promoción vigente que tenemos disponible en este momento.';
             this.updateSummaryScrollButton(true);
             return;
         }
 
-        this.summaryName.textContent = 'Muy pronto una nueva promoción tomará esta temporada';
-        this.summaryMeta.textContent = 'Explora nuestras campañas especiales y descubre las experiencias exclusivas que vuelven durante el año.';
+        if (featuredPromotion) {
+            this.summaryName.textContent = featuredPromotion.promoTitle;
+            this.summaryMeta.textContent = `La próxima campaña real llegará del ${this.formatRange(featuredPromotion.startDate)} al ${this.formatRange(featuredPromotion.endDate)}.`;
+            this.updateSummaryScrollButton(true);
+            return;
+        }
+
+        this.summaryName.textContent = 'Pronto anunciaremos una nueva temporada promocional';
+        this.summaryMeta.textContent = 'Explora nuestras campañas especiales y mantente atento a la próxima fecha importante del calendario.';
         this.updateSummaryScrollButton(false);
     }
 
@@ -84,14 +113,14 @@ class PromotionsManager {
         if (!this.summaryScrollButton) return;
 
         this.summaryScrollButton.addEventListener('click', () => {
-            const activePromotion = this.timeline.querySelector('.promo-node.is-active');
+            const featuredPromotion = this.timeline.querySelector('.promo-node.is-active, .promo-node.is-featured');
 
-            if (!activePromotion) return;
+            if (!featuredPromotion) return;
 
             const navbar = document.querySelector('.navbar.fixed-top');
             const navbarHeight = navbar ? navbar.offsetHeight : 0;
             const viewportOffset = window.innerWidth < BREAKPOINTS.md ? 18 : 34;
-            const targetTop = activePromotion.getBoundingClientRect().top + window.scrollY - navbarHeight - viewportOffset;
+            const targetTop = featuredPromotion.getBoundingClientRect().top + window.scrollY - navbarHeight - viewportOffset;
 
             window.scrollTo({
                 top: Math.max(targetTop, 0),
@@ -99,32 +128,34 @@ class PromotionsManager {
             });
 
             window.clearTimeout(this.highlightTimeout);
-            activePromotion.classList.remove('is-highlighted');
+            featuredPromotion.classList.remove('is-highlighted');
 
             window.setTimeout(() => {
-                activePromotion.classList.add('is-highlighted');
+                featuredPromotion.classList.add('is-highlighted');
 
                 this.highlightTimeout = window.setTimeout(() => {
-                    activePromotion.classList.remove('is-highlighted');
+                    featuredPromotion.classList.remove('is-highlighted');
                 }, 1200);
             }, 420);
         });
     }
 
     render() {
-        const { currentMonth, currentPromotion } = this.getCurrentContext();
+        const { today, activePromotion, featuredPromotion } = this.getCurrentContext();
 
         this.timeline.innerHTML = this.promotions
             .map((promotion, index) => {
-                const state = this.getPromotionState(promotion.monthIndex, currentMonth);
+                const state = this.getPromotionState(promotion, today);
                 const sideClass = index % 2 === 0 ? 'promo-node--left' : 'promo-node--right';
-                const isInteractive = state === 'active';
+                const isInteractive = state === 'active' || (state === 'upcoming' && featuredPromotion?.slug === promotion.slug);
+                const isFeatured = !activePromotion && featuredPromotion?.slug === promotion.slug;
                 const badgeText = state === 'active' ? 'Activa ahora' : promotion.badge;
-                const statusText = this.getStatusLabel(state, promotion);
+                const statusText = this.getStatusLabel(state);
                 const availabilityText = this.getAvailabilityCopy(state, promotion);
+                const summaryCtaLabel = state === 'active' ? promotion.ctaLabel : 'Ver detalle';
 
                 return `
-                    <article class="promo-node ${sideClass} is-${state}" data-promo-state="${state}" data-promo-slug="${promotion.slug}">
+                    <article class="promo-node ${sideClass} is-${state}${isFeatured ? ' is-featured' : ''}" data-promo-state="${state}" data-promo-slug="${promotion.slug}">
                         <div class="promo-node__content">
                             <span class="promo-node__month">${promotion.dateLabel}</span>
                             <span class="promo-node__event">${promotion.eventName}</span>
@@ -159,7 +190,7 @@ class PromotionsManager {
                                         ${isInteractive ? '' : 'aria-disabled="true" tabindex="-1"'}
                                     >
                                         <i class="fas fa-anchor"></i>
-                                        ${isInteractive ? promotion.ctaLabel : 'Próximamente'}
+                                        ${isInteractive ? summaryCtaLabel : 'Próximamente'}
                                     </a>
                                 </div>
 
@@ -171,7 +202,7 @@ class PromotionsManager {
             })
             .join('');
 
-        this.updateSummary(currentPromotion);
+        this.updateSummary(activePromotion, featuredPromotion);
     }
 }
 

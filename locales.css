@@ -842,6 +842,12 @@
         border: 1px solid rgba(49, 46, 44, 0.1);
         box-shadow: 0 18px 35px rgba(49, 46, 44, 0.12);
     }
+
+    .locales-editorial-page .cart-price,
+    .locales-editorial-page .phone-text,
+    .locales-editorial-page .whatsapp-text {
+        color: #fff;
+    }
 }
 
 @media (min-width: 1200px) {
