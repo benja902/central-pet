@@ -65,7 +65,7 @@ class App {
             
             this.setupCategoriesNav();
             this.setupMenuCardVariants();
-            this.setupSectionSubnavs();
+            this.setupMenuSorting();
             this.setupGlobalEventListeners();
             this.setupErrorHandling();
             
@@ -142,6 +142,8 @@ class App {
     setupCategoriesNav() {
         const shell = document.querySelector('.categories-nav-shell');
         const menu = document.querySelector('.categories-menu');
+        const categoryItems = document.querySelectorAll('.category-item[data-category-filter]');
+        const sections = document.querySelectorAll('.tienda-category-section[data-category]');
 
         if (!shell || !menu) return;
 
@@ -161,67 +163,126 @@ class App {
         updateNavState();
 
         this.updateCategoriesNavState = updateNavState;
+
+        if (!categoryItems.length || !sections.length) return;
+
+        const syncCategoryState = (targetCategory = 'all') => {
+            const normalizedCategory = targetCategory || 'all';
+
+            categoryItems.forEach((item) => {
+                item.classList.toggle('active', item.dataset.categoryFilter === normalizedCategory);
+            });
+
+            sections.forEach((section) => {
+                const matchesCategory = section.dataset.category === normalizedCategory;
+                section.hidden = normalizedCategory !== 'all' && !matchesCategory;
+            });
+
+            if (normalizedCategory === 'all') {
+                if (window.location.hash) {
+                    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+                }
+                return;
+            }
+
+            const targetSection = document.querySelector(`.tienda-category-section[data-category="${normalizedCategory}"]`);
+            if (!targetSection) return;
+
+            window.history.replaceState(null, '', `#${normalizedCategory}`);
+
+            const navTop = document.querySelector('.navbar.fixed-top')?.offsetHeight || 0;
+            const sectionTop = targetSection.getBoundingClientRect().top + window.scrollY - navTop - 24;
+            window.scrollTo({ top: Math.max(sectionTop, 0), behavior: 'smooth' });
+        };
+
+        categoryItems.forEach((item) => {
+            item.addEventListener('click', (event) => {
+                event.preventDefault();
+                syncCategoryState(item.dataset.categoryFilter || 'all');
+            });
+        });
+
+        const initialHash = window.location.hash.replace('#', '');
+        const hasMatchingHash = Array.from(categoryItems).some((item) => item.dataset.categoryFilter === initialHash);
+        syncCategoryState(hasMatchingHash ? initialHash : 'all');
     }
 
     /**
-     * Configura submenus internos tipo tabs para secciones largas del menu
+     * Configura el selector de orden del menu editorial.
      */
-    setupSectionSubnavs() {
-        const subnavs = document.querySelectorAll('.section-subnav');
+    setupMenuSorting() {
+        if (!document.body.classList.contains('menu-page')) return;
 
-        subnavs.forEach((subnav) => {
-            const section = subnav.closest('section');
+        const sortSelect = document.querySelector('#tiendaSortSelect');
+        const grids = document.querySelectorAll('.tienda-category-section .products-grid');
 
-            if (!section) return;
+        if (!sortSelect || !grids.length) return;
 
-            const buttons = subnav.querySelectorAll('.section-subnav-link');
-            const subsections = section.querySelectorAll('.menu-subsection');
-
-            if (!buttons.length || !subsections.length) return;
-
-            const combinedGrid = document.createElement('div');
-            const usesMenuFeatureGrid = section.querySelector('.products-grid--menu-feature');
-            combinedGrid.className = usesMenuFeatureGrid
-                ? 'products-grid products-grid--menu-feature'
-                : 'products-grid';
-
-            subsections.forEach((subsection) => {
-                const subsectionId = subsection.id;
-                const cards = subsection.querySelectorAll('.product-card');
-
-                cards.forEach((card) => {
-                    card.dataset.subsection = subsectionId;
-                    combinedGrid.appendChild(card);
-                });
-
-                subsection.classList.add('is-source-hidden');
-            });
-
-            subnav.insertAdjacentElement('afterend', combinedGrid);
-
-            const cards = combinedGrid.querySelectorAll('.product-card');
-
-            const setActiveTab = (targetId) => {
-                buttons.forEach((button) => {
-                    const isActive = button.dataset.subnavTarget === targetId;
-                    button.classList.toggle('is-active', isActive);
-                });
-
-                cards.forEach((card) => {
-                    const showAll = targetId === 'all';
-                    const matchesTarget = card.dataset.subsection === targetId;
-                    card.classList.toggle('is-hidden-card', !(showAll || matchesTarget));
-                });
-            };
-
-            setActiveTab('all');
-
-            buttons.forEach((button) => {
-                button.addEventListener('click', () => {
-                    setActiveTab(button.dataset.subnavTarget || 'all');
-                });
+        grids.forEach((grid) => {
+            Array.from(grid.querySelectorAll('.product-card')).forEach((card, index) => {
+                if (!card.dataset.originalIndex) {
+                    card.dataset.originalIndex = String(index);
+                }
             });
         });
+
+        const getCardName = (card) => (
+            card.querySelector('h3')?.textContent?.trim().toLowerCase() || ''
+        );
+
+        const getCardPrice = (card) => {
+            const priceText = card.querySelector('.current-price')?.textContent || '';
+            return Number.parseFloat(priceText.replace(/[^\d.]/g, '')) || 0;
+        };
+
+        const getFeaturedScore = (card) => {
+            let score = 0;
+
+            if (card.classList.contains('product-card--promo-live')) score += 3;
+            if (card.querySelector('.old-price')) score += 2;
+            if (card.querySelector('.promo-card__campaign-label')) score += 1;
+
+            return score;
+        };
+
+        const sortGrid = (grid, sortValue) => {
+            const cards = Array.from(grid.querySelectorAll('.product-card'));
+
+            cards.sort((cardA, cardB) => {
+                switch (sortValue) {
+                    case 'name-asc':
+                        return getCardName(cardA).localeCompare(getCardName(cardB), 'es');
+                    case 'name-desc':
+                        return getCardName(cardB).localeCompare(getCardName(cardA), 'es');
+                    case 'price-asc':
+                        return getCardPrice(cardA) - getCardPrice(cardB);
+                    case 'price-desc':
+                        return getCardPrice(cardB) - getCardPrice(cardA);
+                    case 'featured': {
+                        const scoreDiff = getFeaturedScore(cardB) - getFeaturedScore(cardA);
+                        if (scoreDiff !== 0) return scoreDiff;
+                        return Number(cardA.dataset.originalIndex) - Number(cardB.dataset.originalIndex);
+                    }
+                    case 'default':
+                    default:
+                        return Number(cardA.dataset.originalIndex) - Number(cardB.dataset.originalIndex);
+                }
+            });
+
+            cards.forEach((card) => {
+                grid.appendChild(card);
+            });
+        };
+
+        const applySorting = () => {
+            const sortValue = sortSelect.value || 'default';
+
+            grids.forEach((grid) => {
+                sortGrid(grid, sortValue);
+            });
+        };
+
+        sortSelect.addEventListener('change', applySorting);
     }
 
     /**

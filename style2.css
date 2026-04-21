@@ -1985,7 +1985,7 @@ footer {
 }
 
 .quantity-btn.minus {
-    color: #dc3545;
+    color: var(--color-primary);
 }
 
 .quantity-btn.plus {
@@ -1996,7 +1996,7 @@ footer {
     flex: 1;
     text-align: center;
     font-weight: 700;
-    color: #333;
+    color: var(--color-surface);
     padding: 3px 0;
 }
 
@@ -4348,6 +4348,22 @@ footer {
     width: auto;
     min-width: 126px;
     border-radius: 999px;
+}
+
+.home-editorial-page .editorial-product-card .add-to-cart-btn.quantity-control,
+.home-editorial-page .editorial-product-card .add-to-cart-btn.quantity-control .quantity-value,
+.home-editorial-page .editorial-product-card .add-to-cart-btn.quantity-control .quantity-btn,
+.home-editorial-page .editorial-product-card .add-to-cart-btn.quantity-control .quantity-btn.minus,
+.home-editorial-page .editorial-product-card .add-to-cart-btn.quantity-control .quantity-btn.plus {
+    color: var(--color-white);
+}
+
+.home-editorial-page .editorial-product-card .add-to-cart-btn.quantity-control .quantity-btn {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.home-editorial-page .editorial-product-card .add-to-cart-btn.quantity-control .quantity-btn:hover {
+    background: rgba(255, 255, 255, 0.24);
 }
 
 .editorial-services {

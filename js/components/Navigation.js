@@ -37,10 +37,16 @@ class Navigation {
             accordionItems: safeQuerySelectorAll(DOM_SELECTORS.accordionItems),
             favoriteButtons: safeQuerySelectorAll(DOM_SELECTORS.favoriteButtons)
         };
-    }    /**
+    }
+
+    /**
      * Configura la navegación por categorías
      */
     setupCategoryNavigation() {
+        if (document.body.classList.contains('menu-page')) {
+            return;
+        }
+
         this.elements.categoryLinks.forEach(link => {
             safeAddEventListener(link, 'click', (e) => {
                 this.handleCategoryClick(e);
